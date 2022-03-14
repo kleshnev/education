@@ -72,7 +72,7 @@ public class Main {
 
     public static String bitSetToString(BitSet bitSet) {
         StringBuilder str = new StringBuilder();
-        str.append("0".repeat(Math.max(0, num / 2)));
+        str.append("0".repeat(Math.max(0, num)));
         for (int id = bitSet.nextSetBit(0); id >= 0; id = bitSet.nextSetBit(id + 1)) {
             str.insert(id, 1);
         }
