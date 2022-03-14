@@ -36,7 +36,6 @@ public class Main {
 
     public static BitSet compress(String userInput) {
         char[] arr = userInput.toCharArray();
-        num = arr.length * 2;
         BitSet bitSet = new BitSet(arr.length * 2);
         for (int i = 0, j = 0; i < arr.length; i++, j += 2) {
             if (map.containsKey(arr[i])) {
@@ -74,7 +73,7 @@ public class Main {
         StringBuilder str = new StringBuilder();
         str.append("0".repeat(Math.max(0, num)));
         for (int id = bitSet.nextSetBit(0); id >= 0; id = bitSet.nextSetBit(id + 1)) {
-            str.insert(id, 1);
+            str.replace(id,id+1, "1");
         }
         return str.toString();
     }
