@@ -39,7 +39,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>stage2.demo.App</mainClass>
+                                    <mainClass>stage2.Tasks1.practice.demo.App</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

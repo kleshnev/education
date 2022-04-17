@@ -1,4 +1,4 @@
-package stage2.practice.Task3;
+package stage2.Tasks1.practice.Task3;
 
 import java.util.BitSet;
 import java.util.HashMap;

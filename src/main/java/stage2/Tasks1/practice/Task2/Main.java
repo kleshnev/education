@@ -1,4 +1,4 @@
-package stage2.practice.Task2;
+package stage2.Tasks1.practice.Task2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
