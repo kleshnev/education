@@ -76,13 +76,12 @@ public class App {
                                 String column = "";
                                 String userInputStr;
                                 switch (userIn) {
-                                    case 1 -> column = "NAME";
-                                    case 2 -> column = "LOCALITY_AREA";
-                                    case 3 -> column = "LOCALITY_TYPE_ID";
-                                    case 4 -> column = "FOUNDATION_DATE";
-                                    case 5 -> column = "POPULATION";
+                                    case 1 -> {column = "NAME";System.out.println("Введите новое название нас.пункта: ");}
+                                    case 2 -> {column = "LOCALITY_AREA";System.out.println("Введите новую площадь пункта: ");}
+                                    case 3 -> {column = "LOCALITY_TYPE_ID";System.out.println("Введите новый тип\n1.Город\n2.Деревня\n3.Село ");}
+                                    case 4 -> {column = "FOUNDATION_DATE";System.out.println("Введите год основания: ");}
+                                    case 5 -> {column = "POPULATION";System.out.println("Введите количество населения в тысячах: ");}
                                 }
-                                System.out.println("Введите новые данные: ");
                                 userInputStr = sc2.nextLine();
                                 try {
                                     new Inquiry().modifyLocality(connection, name, column, userInputStr);
