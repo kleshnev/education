@@ -7,11 +7,11 @@ import java.sql.Statement;
 
 public class Inquiry {
 
-    public void showAll(Connection connection) throws SQLException {
+    public void showAllLocalities(Connection connection) throws SQLException {
         Statement stat = connection.createStatement();
         try (ResultSet rs = stat.executeQuery("select * from Locality")) {
             while (rs.next()) {
-                System.out.println(rs.getString("NAME"));
+                System.out.println("-"+rs.getString("NAME"));
             }
         }
         stat.close();
@@ -20,7 +20,7 @@ public class Inquiry {
         Statement stat = connection.createStatement();
         try (ResultSet rs = stat.executeQuery("select * from STREET")) {
             while (rs.next()) {
-                System.out.println(rs.getString("STREET_NAME"));
+                System.out.println("-"+rs.getString("STREET_NAME"));
             }
         }
         stat.close();
@@ -157,7 +157,24 @@ public class Inquiry {
         }
         stat.close();
     }
+    public void findLocalityByStreetName(Connection connection,  String pattern) throws SQLException {
 
+        Statement stat = connection.createStatement();
+        try (ResultSet rs = stat.executeQuery("select NAME,STREET.STREET_NAME,STREET_TYPE.STREET_TYPE_NAME from Locality " +
+                "INNER JOIN LOCALITY_STREET ON LOCALITY_STREET.ID_LOCALITY = LOCALITY.ID_LOCALITY " +
+                "INNER JOIN STREET_TYPE ON STREET_TYPE.ID_STREET_TYPE = STREET.ID_STREET_TYPE " +
+                "INNER JOIN STREET ON STREET.ID_STREET = LOCALITY_STREET.ID_STREET WHERE STREET_NAME LIKE'%" + pattern + "%'")) {
+            boolean exists = false;
+            while (rs.next()) {
+                System.out.println("—" + rs.getString("NAME") + ", " + rs.getString("STREET_TYPE_NAME") + " " + rs.getString("STREET_NAME"));
+                exists = true;
+            }
+            if (!exists) {
+                System.out.println("Улицы c паттерном \"" + pattern + "\" не существует в базе");
+            }
+        }
+        stat.close();
+    }
     public void streetExistsByLikeName(Connection connection,  String pattern) throws SQLException {
 
         Statement stat = connection.createStatement();
@@ -196,7 +213,7 @@ public class Inquiry {
         Statement stat = connection.createStatement();
         try (ResultSet rs = stat.executeQuery("select NAME,POPULATION from Locality WHERE POPULATION"+pattern+pop)) {
             boolean exists = false;
-            System.out.println("Найдены города:");
+            System.out.println("Найдены города "+pattern+pop+"т. человек");
             while (rs.next()) {
                 System.out.println(rs.getString("NAME") +" — " +rs.getString("POPULATION")+"тыс. человек");
                 exists = true;
@@ -211,7 +228,7 @@ public class Inquiry {
         Statement stat = connection.createStatement();
         try (ResultSet rs = stat.executeQuery("select NAME,LOCALITY_AREA from Locality WHERE LOCALITY_AREA"+pattern+areaSize)) {
             boolean exists = false;
-            System.out.println("Найдены города:");
+            System.out.println("Найдены города с площадью "+pattern+areaSize);
             while (rs.next()) {
                 System.out.println(rs.getString("NAME") +" — " +rs.getString("LOCALITY_AREA")+"м^2");
                 exists = true;
@@ -230,7 +247,7 @@ public class Inquiry {
                 "INNER JOIN STREET ON STREET.ID_STREET = LOCALITY_STREET.ID_STREET "+
                 "INNER JOIN STREET_TYPE ON STREET_TYPE.ID_STREET_TYPE = STREET.ID_STREET_TYPE WHERE STREET_TYPE_NAME='"+streetType+"'")) {
             boolean exists = false;
-            System.out.println("Найдены города c типом: " +streetType);
+            System.out.println("Найдены города c улицами типа: " +streetType);
             while (rs.next()) {
                 System.out.println("—"+rs.getString("NAME") + ", — "+ rs.getString("STREET_TYPE_NAME") +" "+ rs.getString("STREET_NAME"));
                 exists = true;
