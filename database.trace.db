@@ -10737,3 +10737,35 @@ Savepoint is unnamed [90064-210]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at com.dci.intellij.dbn.common.thread.ThreadPool.lambda$createThreadFactory$1(ThreadPool.java:39)
 	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-04-19 18:08:55 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Denis/IdeaProjects/education/database.mv.db [2.1.210/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Denis/IdeaProjects/education/database.mv.db [2.1.210/7]" [50000-210]
+	at org.h2.message.DbException.get(DbException.java:216)
+	at org.h2.message.DbException.convert(DbException.java:414)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:120)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:3296)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:585)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:461)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4056)
+	at org.h2.mvstore.db.Store.<init>(Store.java:129)
+	at org.h2.engine.Database.<init>(Database.java:324)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at stage2.Tasks2.DBConnection.getDBConnection(DBConnection.java:11)
+	at stage2.Tasks2.App.main(App.java:14)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Внутренняя ошибка: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Denis/IdeaProjects/education/database.mv.db [2.1.210/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Denis/IdeaProjects/education/database.mv.db [2.1.210/7]" [50000-210]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:496)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Denis/IdeaProjects/education/database.mv.db [2.1.210/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:444)
+	... 13 more
