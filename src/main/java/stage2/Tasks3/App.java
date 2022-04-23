@@ -13,15 +13,17 @@ public class App {
 
 
         while (true) {
-            System.out.println("Выберите действие:\n1.Создать новый лабиринт.\n2.Вывести существующий лабиринт");
+            System.out.println("Выберите действие:\n1.Создать новый лабиринт.\n2.Вывести существующий лабиринт\n3.Завершить работу");
             Scanner sc = new Scanner(System.in);
             switch (sc.nextInt()) {
                 case 1 -> {
-                    Maze mz = new Maze(10, 2);
+                    System.out.println("Введите размер лабиринта:");
+                    int size = sc.nextInt();
+                    Maze mz = new Maze(size, 2);
                     mz.generateMaze();
-                    int idMaze = new Inquire().createMaze(connection, mz.size);
-                    for (int i = 0; i < mz.size; i++) {
-                        for (int j = 0; j < mz.size; j++) {
+                    int idMaze = new Inquire().createMaze(connection, size);
+                    for (int i = 0; i < size; i++) {
+                        for (int j = 0; j < size; j++) {
                             new Inquire().createCell(connection, mz.maze[i][j].getValue(), mz.maze[i][j].getX(), mz.maze[i][j].getY(), idMaze);
                         }
                     }

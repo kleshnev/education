@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 public class Inquire {
 
     public int createMaze(Connection connection, int length) throws SQLException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String date = LocalDateTime.now().format(formatter);
         String com = String.format("""
                 insert into MAZE

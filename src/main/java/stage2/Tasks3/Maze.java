@@ -5,14 +5,16 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class Maze {
-    //public String[][] maze;
     public Cell[][] maze;
-    int sparsity;
-    int startPoint;
-    int endPoint;
-    int size;
+    private final int sparsity;
+    private int startPoint;
+    private int endPoint;
+    private final int size;
     int counter = 0;
 
+    public int getSize(){
+        return size;
+    }
     public Maze(int size, int sparsity) {
         this.sparsity = sparsity;
         this.size = size;
@@ -55,7 +57,6 @@ public class Maze {
                 arr.remove(block);
             }
         }
-        printMaze();
     }
 
     public void printMaze() {
